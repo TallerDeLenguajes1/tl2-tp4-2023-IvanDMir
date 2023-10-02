@@ -23,14 +23,7 @@ namespace Programa
           
         }
 
-        public Cadete()
-        {
-            this.id=0;
-            this.nombre="";
-            this.direccion="";
-            this.telefono="";
-          
-        }
+      
 
 
       

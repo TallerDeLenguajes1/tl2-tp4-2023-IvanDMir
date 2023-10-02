@@ -3,17 +3,15 @@ using ACCESOADATOS;
 namespace Programa{
     public class Cadeteria
     {
-        static AccesoADatos m_Cadeteria;
+        static Cadeteria S_Cadeteria;
         private string nombre;
         private string telefono;
         private List<Cadete> listadoCadetes;
         
         private List<Pedido> listadoPedidos;
 
-        public string Nombre { get => nombre; set => nombre = value; }
-        public string Telefono { get => telefono; set => telefono = value; }
        public List<Pedido> ListadoPedidos { get => listadoPedidos; set => listadoPedidos = value; }
-     public List<Cadete> ListadoCadetes { get => listadoCadetes; set => listadoCadetes = value; }
+
 
         public Cadeteria(string nombre, string celular, List<Cadete> listaCadete)
         {
@@ -87,6 +85,13 @@ namespace Programa{
                 }
             }
             return pedidosPendientes;
+        }
+        public static Cadeteria Instanciar(){
+            if(S_Cadeteria == null){
+                AccesoADatos Instancia = new ManipulacionJSON();
+                S_Cadeteria = Instancia.LeerArchivoDeCadeteria().First();
+            }
+            return S_Cadeteria;
         }
     }   
 }

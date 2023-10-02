@@ -1,11 +1,13 @@
-using System.Text.Json;
+
 using Programa;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace ACCESOADATOS {
 
     public abstract class AccesoADatos {
-        public abstract List<Cadete> LeerArchivoDeCadetes(string nombreArchivo);
-        public abstract List<Cadeteria> LeerArchivoDeCadeteria(string nombreArchivo,List<Cadete> ListaCadetes);
+        public abstract List<Cadete> LeerArchivoDeCadetes();
+        public abstract List<Cadeteria> LeerArchivoDeCadeteria();
     public void CrearArchivoJSON(string ruta){
         var archivoCSV = new List<string[]>();
         var Linea = File.ReadAllLines(ruta);
@@ -21,7 +23,7 @@ namespace ACCESOADATOS {
             }
             ListaObjetos.Add(Objeto);
         }
-        var ArchivoJSON =JsonSerializer.Serialize(ListaObjetos,new JsonSerializerOptions{ WriteIndented = true});
+        var ArchivoJSON =System.Text.Json.JsonSerializer.Serialize(ListaObjetos);
         File.WriteAllText($"{ruta.Split('.')[0]}.json",ArchivoJSON);
     }
  /*   public class ArchivosCSV : Manipular {
@@ -77,46 +79,34 @@ namespace ACCESOADATOS {
             }
             return Lista;
             }
-          
-        }*/
-
+         */ 
+        }
+    
         public class ManipulacionJSON : AccesoADatos {
-        public override List<Cadete> LeerArchivoDeCadetes(string nombreArchivo)
+        public override List<Cadete> LeerArchivoDeCadetes()
         {
             List<Cadete> ListaCadetes;
-            string Archivo = "";
-            using ( var AbrirArchivo = new FileStream(nombreArchivo,FileMode.Open)){
-                using (var strReader = new StreamReader(AbrirArchivo)){
-                    Archivo = strReader.ReadToEnd();
-                    AbrirArchivo.Close();
-                }
-            ListaCadetes = JsonSerializer.Deserialize<List<Cadete>>(Archivo);
+            using(var reader = new StreamReader("../Cadeteria.json")) {
+                ListaCadetes = System.Text.Json.JsonSerializer.Deserialize<List<Cadete>>(reader.ReadToEnd());
             }
             return ListaCadetes;
         }
-         public override List<Cadeteria>LeerArchivoDeCadeteria(string rutaDeArchivo, List<Cadete> ListaCadetes){
-            List<Cadeteria>listaCadeteria;
-            string documento;
-            using (var archivoOpen = new FileStream(rutaDeArchivo, FileMode.Open))
-            {
-                using (var strReader = new StreamReader(archivoOpen))
-                {
-                    documento = strReader.ReadToEnd();
-                    archivoOpen.Close();
-                }
-                listaCadeteria = JsonSerializer.Deserialize<List<Cadeteria>>(documento);
-                if(listaCadeteria!=null)
-                {
-                    foreach (var Cadetes in listaCadeteria)
-                {
-                    Cadetes.ListadoCadetes.AddRange(ListaCadetes);
-                }
-                }
-                
+    
+         public override List<Cadeteria>LeerArchivoDeCadeteria(){
+           string Path = "../Cadeteria.json";
+            List<Cadeteria> service;
+            List<Cadete> deliveriesList = LeerArchivoDeCadetes();
+            JArray ArregloJSon = JArray.Parse(File.ReadAllText(Path));
+            foreach(JObject item in ArregloJSon) {
+                item["DeliveriesList"] = JArray.Parse(JsonConvert.SerializeObject(deliveriesList));
             }
-            return (listaCadeteria);
+            File.WriteAllText(Path, ArregloJSon.ToString());
+            using(var reader = new StreamReader(Path)) {
+                service = JsonConvert.DeserializeObject<List<Cadeteria>>(reader.ReadToEnd());
+            }
+            return service;
         }
     }
 
     }
-    }
+    
