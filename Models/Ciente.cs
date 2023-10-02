@@ -20,13 +20,5 @@ namespace Programa
             this.datosReferenciaDireccion=adressReferences;
         }
 
-        public Cliente()
-        {
-            this.nombre="";
-            this.direccion="";
-            this.telefono="";
-            this.datosReferenciaDireccion="";
-        }
-        
     }
 }

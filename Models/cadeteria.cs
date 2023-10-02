@@ -1,8 +1,9 @@
+using ACCESOADATOS;
 
-namespace Programa
-{
+namespace Programa{
     public class Cadeteria
     {
+        static AccesoADatos m_Cadeteria;
         private string nombre;
         private string telefono;
         private List<Cadete> listadoCadetes;

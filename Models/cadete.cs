@@ -1,4 +1,4 @@
-using Programa;
+
 namespace Programa
 {
     public class Cadete

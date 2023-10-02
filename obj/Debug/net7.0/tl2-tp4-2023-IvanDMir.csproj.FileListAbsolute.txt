@@ -1,0 +1,7 @@
+C:\Users\User\Dropbox\Facultad\Tercer año Segundo cuatrimestre\Taller 2 SI\tl2-tp4-2023-IvanDMir\obj\Debug\net7.0\tl2-tp4-2023-IvanDMir.csproj.AssemblyReference.cache
+C:\Users\User\Dropbox\Facultad\Tercer año Segundo cuatrimestre\Taller 2 SI\tl2-tp4-2023-IvanDMir\obj\Debug\net7.0\tl2-tp4-2023-IvanDMir.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Dropbox\Facultad\Tercer año Segundo cuatrimestre\Taller 2 SI\tl2-tp4-2023-IvanDMir\obj\Debug\net7.0\tl2-tp4-2023-IvanDMir.AssemblyInfoInputs.cache
+C:\Users\User\Dropbox\Facultad\Tercer año Segundo cuatrimestre\Taller 2 SI\tl2-tp4-2023-IvanDMir\obj\Debug\net7.0\tl2-tp4-2023-IvanDMir.AssemblyInfo.cs
+C:\Users\User\Dropbox\Facultad\Tercer año Segundo cuatrimestre\Taller 2 SI\tl2-tp4-2023-IvanDMir\obj\Debug\net7.0\tl2-tp4-2023-IvanDMir.csproj.CoreCompileInputs.cache
+C:\Users\User\Dropbox\Facultad\Tercer año Segundo cuatrimestre\Taller 2 SI\tl2-tp4-2023-IvanDMir\obj\Debug\net7.0\tl2-tp4-2023-IvanDMir.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\User\Dropbox\Facultad\Tercer año Segundo cuatrimestre\Taller 2 SI\tl2-tp4-2023-IvanDMir\obj\Debug\net7.0\tl2-tp4-2023-IvanDMir.MvcApplicationPartsAssemblyInfo.cache

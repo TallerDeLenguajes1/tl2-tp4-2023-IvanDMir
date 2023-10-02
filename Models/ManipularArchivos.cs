@@ -1,15 +1,30 @@
 using System.Text.Json;
-namespace Programa {
+using Programa;
 
-    public abstract class Manipular {
-        public virtual List<Cadete> LeerArchivoDeCadetes(string nombreArchivo){
-            return null;
+namespace ACCESOADATOS {
+
+    public abstract class AccesoADatos {
+        public abstract List<Cadete> LeerArchivoDeCadetes(string nombreArchivo);
+        public abstract List<Cadeteria> LeerArchivoDeCadeteria(string nombreArchivo,List<Cadete> ListaCadetes);
+    public void CrearArchivoJSON(string ruta){
+        var archivoCSV = new List<string[]>();
+        var Linea = File.ReadAllLines(ruta);
+        foreach(string line in Linea.Skip(1)){
+            archivoCSV.Add(line.Split(','));   
         }
-        public virtual List<Cadeteria> LeerArchivoDeCadeteria(string nombreArchivo,List<Cadete> ListaCadetes){
-            return null;
+        var propiedades = Linea[0].Split(',');
+        var ListaObjetos = new List<Dictionary<string,string>>();
+        for(int i =0; i <Linea.Length; i++ ){
+            var Objeto = new Dictionary<string,string>();
+            for (int j=0;j<propiedades.Length; j++){
+                Objeto.Add(propiedades[j],archivoCSV[i][j]);
+            }
+            ListaObjetos.Add(Objeto);
         }
+        var ArchivoJSON =JsonSerializer.Serialize(ListaObjetos,new JsonSerializerOptions{ WriteIndented = true});
+        File.WriteAllText($"{ruta.Split('.')[0]}.json",ArchivoJSON);
     }
-    public class ArchivosCSV : Manipular {
+ /*   public class ArchivosCSV : Manipular {
         private List<string[]> LecturaCsv(string nombreArchivo){
             var Lectura = new List<string[]> ();
             if (File.Exists(nombreArchivo)){
@@ -63,8 +78,9 @@ namespace Programa {
             return Lista;
             }
           
-        }
-        public class ManipulacionJSON : Manipular {
+        }*/
+
+        public class ManipulacionJSON : AccesoADatos {
         public override List<Cadete> LeerArchivoDeCadetes(string nombreArchivo)
         {
             List<Cadete> ListaCadetes;
@@ -102,4 +118,5 @@ namespace Programa {
         }
     }
 
+    }
     }
