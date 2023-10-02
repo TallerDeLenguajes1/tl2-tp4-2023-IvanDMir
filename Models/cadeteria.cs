@@ -48,6 +48,11 @@ namespace Programa{
 
         }
 
+        public void AgregarCadete(Cadete CadeteNuevo){
+            listadoCadetes.Add(CadeteNuevo);
+            CadeteAccesso.Guardar(listadoCadetes);
+        }
+
         public double jornalACobrar(int idDelCadete){
             int PedidosEntregados = 0;
             var cadete = this.listadoCadetes.FirstOrDefault(l=>l.Id==idDelCadete);
@@ -98,5 +103,7 @@ namespace Programa{
             }
             return S_Cadeteria;
         }
+         public Cadete GetCadeteid(int id) => listadoCadetes.Single(cadete => cadete.Id == id);
+        public Pedido GetpedidoID(int numero) => listadoPedidos.Single(Pedido => Pedido.Numero == numero);
     }   
 }

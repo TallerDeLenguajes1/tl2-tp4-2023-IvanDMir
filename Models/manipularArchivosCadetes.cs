@@ -12,7 +12,7 @@ public class CadeteAccesso {
         return cadetes;
     }
 
-    public void GuardarCadetes(List<Cadete> Listacadetes) {
+    public static void  Guardar(List<Cadete> Listacadetes) {
         var ruta = "Datos/Cadete.json";
         var datos = JsonSerializer.Serialize(Listacadetes, new JsonSerializerOptions { WriteIndented = true });
         using(var writer = new StreamWriter(ruta)) {
