@@ -1,0 +1,20 @@
+[
+    {
+      "Name": "los amigos",
+      "CellphoneNumber": "4353258",
+      "DeliveriesList": [
+        {
+          "Id": 1,
+          "Name": "Pedro",
+          "Address": "Balcarce 200",
+          "CellphoneNumber": "3815363461  "
+        },
+        {
+          "Id": 2,
+          "Name": "Jorgelina ",
+          "Address": "America 2001",
+          "CellphoneNumber": "3815373567  "
+        }
+      ]
+    }
+  ]

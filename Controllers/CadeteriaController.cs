@@ -9,17 +9,19 @@ public class CadeteriaController : ControllerBase
 {
     
     private readonly ILogger<CadeteriaController> _logger;
+    // Borrrrarrrrrrrr
     private Cadeteria cadeteria;
     private Informe informe;
-
+    //  
      public CadeteriaController(ILogger<CadeteriaController> logger)
      {
          _logger = logger;
+         cadeteria = Cadeteria.Instanciar();
      }
 
     [HttpGet("NombreCadeteria")]
     public ActionResult<string> GetNombre(){
-        return Ok(cadeteria.Nombre);
+        return Ok(cadeteria.MostrarNombreCadeteria());
     }
    
     [HttpGet("GetPedidos")]
@@ -31,10 +33,10 @@ public class CadeteriaController : ControllerBase
     }
     [HttpGet("GetCadetes")]
     public ActionResult<List<Cadete>> GetCadetes(){
-         if(cadeteria.ListadoCadetes == null){
+         if(cadeteria.MostrarCadetesCadeteria() == null){
             return BadRequest("No Hay cadetes en esta cadeteria");
         }
-        return Ok(cadeteria.ListadoCadetes);
+        return Ok(cadeteria.MostrarCadetesCadeteria());
     }
     [HttpGet("GetInforme")]
     public ActionResult<Informe> GetInformeCadeteria(){
