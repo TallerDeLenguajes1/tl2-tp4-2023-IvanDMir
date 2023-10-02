@@ -19,6 +19,9 @@ namespace Programa
             this.telefono=phone;
             this.datosReferenciaDireccion=adressReferences;
         }
+        public Cliente(){
+           Nombre = "";
+        }
 
     }
 }

@@ -1,5 +1,5 @@
 using ACCESOADATOS;
-
+using System.Text.Json;
 namespace Programa{
     public class Cadeteria
     {
@@ -40,7 +40,12 @@ namespace Programa{
         }
 
         public void tomarPedido(Pedido PedidoTomado){
-            this.listadoPedidos.Add(PedidoTomado);
+            this.listadoPedidos.Add(PedidoTomado); 
+            string route = "Datos/Pedidos.json";
+            var archivoJson = JsonSerializer.Serialize(listadoPedidos, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(route, archivoJson);
+            PedidoAccesso.Guardar(ListadoPedidos);
+
         }
 
         public double jornalACobrar(int idDelCadete){

@@ -86,14 +86,14 @@ namespace ACCESOADATOS {
         public override List<Cadete> LeerArchivoDeCadetes()
         {
             List<Cadete> ListaCadetes;
-            using(var reader = new StreamReader("../Cadeteria.json")) {
+            using(var reader = new StreamReader("Datos/Cadetes.json")) {
                 ListaCadetes = System.Text.Json.JsonSerializer.Deserialize<List<Cadete>>(reader.ReadToEnd());
             }
             return ListaCadetes;
         }
     
          public override List<Cadeteria>LeerArchivoDeCadeteria(){
-           string Path = "../Cadeteria.json";
+           string Path = "Datos/Cadeteria.json";
             List<Cadeteria> service;
             List<Cadete> deliveriesList = LeerArchivoDeCadetes();
             JArray ArregloJSon = JArray.Parse(File.ReadAllText(Path));
